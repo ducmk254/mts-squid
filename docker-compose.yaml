@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  squid-proxy:
+    image: ubuntu/squid:5.2-22.04_beta
+    #user: proxy
+    deploy:
+      replicas: 1
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    ports:
+      - 3128:3128
+    volumes:
+      - ./config/squid.conf:/etc/squid/squid.conf
+      #- ./logs:/var/log/squid
+      #- ./data:/var/spool/squid
+      #- ./snippet.conf:/etc/squid/conf.d/snippet.conf
+    networks:
+      - squid-proxy
+networks:
+  squid-proxy:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.232.208.0/24
