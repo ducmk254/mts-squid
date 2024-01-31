@@ -2,6 +2,7 @@ version: '3.8'
 services:
   squid-proxy:
     image: ubuntu/squid:5.2-22.04_beta
+    container_name: squid-proxy
     #user: proxy
     deploy:
       replicas: 1
